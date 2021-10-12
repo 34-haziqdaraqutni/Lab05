@@ -14,6 +14,7 @@ public class playerscript : MonoBehaviour
     public int timeremaining;
     public Text timertext;
     private float TimerValue;
+    public GameObject collisoneffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,22 +33,21 @@ public class playerscript : MonoBehaviour
             {
                 SceneManager.LoadScene("winscene");
             }
-            else if(timeleft<=0)
-            {
-                SceneManager.LoadScene("losescene");
-            }
-
-            
+        }
+        else if (timeleft <= 0)
+        {
+            SceneManager.LoadScene("losescene");
         }
         timeleft -= Time.deltaTime;
         timeremaining = Mathf.FloorToInt(timeleft % 60);
-        timertext.text = "Timer." + timeremaining.ToString();
+        timertext.text = "Timer " + timeremaining.ToString();
     }
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag.Equals("coin"))
         {
             score += 10;
+            Instantiate(collisoneffect, transform.position, Quaternion.identity);
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag.Equals("water"))
