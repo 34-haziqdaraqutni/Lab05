@@ -25,9 +25,19 @@ public class playerscript : MonoBehaviour
     void Update()
     {
         scoretext.GetComponent<Text>().text = "Score " + score;
+
         if (score>=60)
         {
-            SceneManager.LoadScene("winscene");
+            if (timeleft >= TimerValue)
+            {
+                SceneManager.LoadScene("winscene");
+            }
+            else if(timeleft<=0)
+            {
+                SceneManager.LoadScene("losescene");
+            }
+
+            
         }
         timeleft -= Time.deltaTime;
         timeremaining = Mathf.FloorToInt(timeleft % 60);
