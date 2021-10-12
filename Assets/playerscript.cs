@@ -8,6 +8,12 @@ public class playerscript : MonoBehaviour
 {
     public GameObject scoretext;
     private int score;
+    private float scorevalue;
+    public float totalcoins;
+    public float timeleft;
+    public int timeremaining;
+    public Text timertext;
+    private float TimerValue;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +29,9 @@ public class playerscript : MonoBehaviour
         {
             SceneManager.LoadScene("winscene");
         }
+        timeleft -= Time.deltaTime;
+        timeremaining = Mathf.FloorToInt(timeleft % 60);
+        timertext.text = "Timer." + timeremaining.ToString();
     }
     private void OnTriggerEnter(Collider collision)
     {
