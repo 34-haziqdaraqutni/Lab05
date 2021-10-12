@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class playerscript : MonoBehaviour
 {
-    public GameObject scoretext;
+    public Text scoretext;
     private int score;
     private float scorevalue;
     public float totalcoins;
